@@ -89,21 +89,21 @@ BSTNode* CreatNode(ElemType element)
 }
 //注意事项：
 //root
-bool Insert(BSTNode* &root, ElemType ele)
+BSTNode* Insert(BSTNode* &root, ElemType ele)
 {
     if(!root){
         root = CreatNode(ele);
-        Insert(root, ele);
+        root = Insert(root, ele);
     }
     else if (root->Element.Key > ele.Key){
-        Insert(root->left, ele);
+        root->left = Insert(root->left, ele);
     }else if (root->Element.Key < ele.Key){
-        Insert(root->right, ele);
+        root->right = Insert(root->right, ele);
     }else if (root->Element.Key == ele.Key){
         cout << "Duplicate!" << endl;
-        return false;
+        return NULL;
     }
-    return true;
+    return root;
 }
 
 /**
